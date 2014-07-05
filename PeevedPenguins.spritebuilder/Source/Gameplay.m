@@ -15,6 +15,7 @@
 
 - (void)didLoadFromCCB {
     // tell this scene to accept touches
+    CCLOG(@"Enabling touch for Gameplay scene...");
     self.userInteractionEnabled = TRUE;
 }
 
