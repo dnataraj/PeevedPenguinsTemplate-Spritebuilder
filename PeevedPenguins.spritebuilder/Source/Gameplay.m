@@ -10,8 +10,8 @@
 
 @implementation Gameplay {
     CCPhysicsNode *_physicsNode;
-    CCNode *_catapultArm;
-    CCNode *_levelNode;
+    CCNode *_catapultArm, *_levelNode, *_contentNode;
+    
 }
 
 - (void)didLoadFromCCB {
@@ -45,7 +45,7 @@
     self.position = ccp(0, 0);
     //CCLOG(@"Bound box : %f", self.boundingBox.size.width);
     CCActionFollow *follow = [CCActionFollow actionWithTarget:penguin worldBoundary:self.boundingBox];
-    [self runAction:follow];
+    [_contentNode runAction:follow];
 }
 
 - (void)retry {
