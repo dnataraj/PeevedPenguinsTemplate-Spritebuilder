@@ -45,7 +45,7 @@
     self.position = ccp(0, 0);
     //CCLOG(@"Bound box : %f", self.boundingBox.size.width);
     CCActionFollow *follow = [CCActionFollow actionWithTarget:penguin worldBoundary:self.boundingBox];
-    [_contentNode runAction:follow];
+    [_contentNodex runAction:follow];
 }
 
 - (void)retry {
