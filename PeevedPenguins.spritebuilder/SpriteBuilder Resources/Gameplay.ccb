@@ -678,84 +678,6 @@
 						<array>
 							<dict>
 								<key>UUID</key>
-								<integer>7</integer>
-								<key>baseClass</key>
-								<string>CCNode</string>
-								<key>children</key>
-								<array/>
-								<key>customClass</key>
-								<string></string>
-								<key>displayName</key>
-								<string>CCNode</string>
-								<key>memberVarAssignmentName</key>
-								<string>_levelNode</string>
-								<key>memberVarAssignmentType</key>
-								<integer>1</integer>
-								<key>properties</key>
-								<array>
-									<dict>
-										<key>name</key>
-										<string>name</string>
-										<key>type</key>
-										<string>StringSimple</string>
-										<key>value</key>
-										<string></string>
-									</dict>
-									<dict>
-										<key>name</key>
-										<string>position</string>
-										<key>type</key>
-										<string>Position</string>
-										<key>value</key>
-										<array>
-											<real>469</real>
-											<real>47</real>
-											<integer>0</integer>
-											<integer>0</integer>
-											<integer>0</integer>
-										</array>
-									</dict>
-									<dict>
-										<key>name</key>
-										<string>contentSize</string>
-										<key>type</key>
-										<string>Size</string>
-										<key>value</key>
-										<array>
-											<real>490</real>
-											<real>275</real>
-											<integer>0</integer>
-											<integer>0</integer>
-										</array>
-									</dict>
-									<dict>
-										<key>name</key>
-										<string>anchorPoint</string>
-										<key>type</key>
-										<string>Point</string>
-										<key>value</key>
-										<array>
-											<real>0.0</real>
-											<real>0.0</real>
-										</array>
-									</dict>
-									<dict>
-										<key>name</key>
-										<string>scale</string>
-										<key>type</key>
-										<string>ScaleLock</string>
-										<key>value</key>
-										<array>
-											<real>1</real>
-											<real>1</real>
-											<false/>
-											<integer>0</integer>
-										</array>
-									</dict>
-								</array>
-							</dict>
-							<dict>
-								<key>UUID</key>
 								<integer>3</integer>
 								<key>baseClass</key>
 								<string>CCSprite</string>
@@ -800,12 +722,12 @@
 											<real>0.0</real>
 										</array>
 										<array>
-											<real>0.210968017578125</real>
-											<real>32.003936767578125</real>
+											<real>0.1484375</real>
+											<real>42.003936767578125</real>
 										</array>
 										<array>
-											<real>959.2110595703125</real>
-											<real>33.003936767578125</real>
+											<real>958.1485595703125</real>
+											<real>48.003921508789062</real>
 										</array>
 										<array>
 											<real>960</real>
@@ -820,12 +742,12 @@
 												<real>0.0</real>
 											</array>
 											<array>
-												<real>959.2110595703125</real>
-												<real>33.003936767578125</real>
+												<real>958.1485595703125</real>
+												<real>48.003921508789062</real>
 											</array>
 											<array>
-												<real>0.210968017578125</real>
-												<real>32.003936767578125</real>
+												<real>0.1484375</real>
+												<real>42.003936767578125</real>
 											</array>
 											<array>
 												<real>0.0</real>
@@ -909,6 +831,84 @@
 								</array>
 								<key>selected</key>
 								<true/>
+							</dict>
+							<dict>
+								<key>UUID</key>
+								<integer>7</integer>
+								<key>baseClass</key>
+								<string>CCNode</string>
+								<key>children</key>
+								<array/>
+								<key>customClass</key>
+								<string></string>
+								<key>displayName</key>
+								<string>CCNode</string>
+								<key>memberVarAssignmentName</key>
+								<string>_levelNode</string>
+								<key>memberVarAssignmentType</key>
+								<integer>1</integer>
+								<key>properties</key>
+								<array>
+									<dict>
+										<key>name</key>
+										<string>name</string>
+										<key>type</key>
+										<string>StringSimple</string>
+										<key>value</key>
+										<string></string>
+									</dict>
+									<dict>
+										<key>name</key>
+										<string>position</string>
+										<key>type</key>
+										<string>Position</string>
+										<key>value</key>
+										<array>
+											<real>469</real>
+											<real>47</real>
+											<integer>0</integer>
+											<integer>0</integer>
+											<integer>0</integer>
+										</array>
+									</dict>
+									<dict>
+										<key>name</key>
+										<string>contentSize</string>
+										<key>type</key>
+										<string>Size</string>
+										<key>value</key>
+										<array>
+											<real>490</real>
+											<real>275</real>
+											<integer>0</integer>
+											<integer>0</integer>
+										</array>
+									</dict>
+									<dict>
+										<key>name</key>
+										<string>anchorPoint</string>
+										<key>type</key>
+										<string>Point</string>
+										<key>value</key>
+										<array>
+											<real>0.0</real>
+											<real>0.0</real>
+										</array>
+									</dict>
+									<dict>
+										<key>name</key>
+										<string>scale</string>
+										<key>type</key>
+										<string>ScaleLock</string>
+										<key>value</key>
+										<array>
+											<real>1</real>
+											<real>1</real>
+											<false/>
+											<integer>0</integer>
+										</array>
+									</dict>
+								</array>
 							</dict>
 						</array>
 						<key>customClass</key>
