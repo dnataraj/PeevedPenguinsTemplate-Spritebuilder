@@ -56,7 +56,7 @@
 					<key>value</key>
 					<array>
 						<real>227.99996948242188</real>
-						<real>104</real>
+						<real>107</real>
 						<integer>0</integer>
 						<integer>0</integer>
 						<integer>0</integer>
@@ -139,8 +139,6 @@
 					</array>
 				</dict>
 			</array>
-			<key>selected</key>
-			<true/>
 		</dict>
 	</array>
 	<key>jsControlled</key>
@@ -412,7 +410,7 @@
 										<key>value</key>
 										<array>
 											<real>239.16665649414062</real>
-											<real>176.69999694824219</real>
+											<real>179.69999694824219</real>
 											<integer>0</integer>
 											<integer>0</integer>
 											<integer>0</integer>
@@ -467,6 +465,8 @@
 										</array>
 									</dict>
 								</array>
+								<key>selected</key>
+								<true/>
 							</dict>
 							<dict>
 								<key>UUID</key>

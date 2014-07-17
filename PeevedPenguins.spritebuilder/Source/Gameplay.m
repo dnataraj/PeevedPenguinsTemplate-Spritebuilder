@@ -22,7 +22,7 @@
     [_levelNode addChild:level];
     
     // visualize physics bodies and joints
-    _physicsNode.debugDraw = TRUE;
+    http://www.stuckincustoms.com/2014/06/19/dji-quadcopter-china-detention/_physicsNode.debugDraw = TRUE;
     //_pullbackNode.physicsBody.collisionMask = @[];
 }
 
