@@ -22,7 +22,7 @@
     [_levelNode addChild:level];
     
     // visualize physics bodies and joints
-    //_physicsNode.debugDraw = TRUE;
+    _physicsNode.debugDraw = TRUE;
     //_pullbackNode.physicsBody.collisionMask = @[];
 }
 
