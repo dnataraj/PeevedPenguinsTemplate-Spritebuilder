@@ -10,8 +10,7 @@
 
 @implementation Gameplay {
     CCPhysicsNode *_physicsNode;
-    CCNode *_catapultArm, *_levelNode, *_contentNode;
-    
+    CCNode *_catapultArm, *_levelNode, *_contentNode, *_pullbackNode;
 }
 
 - (void)didLoadFromCCB {
@@ -24,6 +23,7 @@
     
     // visualize physics bodies and joints
     _physicsNode.debugDraw = TRUE;
+    _pullbackNode.physicsBody.collisionMask = @[];
 }
 
 - (void)touchBegan:(UITouch *)touch withEvent:(UIEvent *)event {
