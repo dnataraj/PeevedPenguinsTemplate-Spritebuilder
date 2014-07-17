@@ -10,7 +10,8 @@
 
 @implementation Gameplay {
     CCPhysicsNode *_physicsNode;
-    CCNode *_catapultArm, *_levelNode, *_contentNode, *_pullbackNode;
+    CCNode *_catapultArm, *_levelNode, *_contentNode, *_pullbackNode, *_mouseJointNode;
+    CCPhysicsJoint *_mouseJoint;
 }
 
 - (void)didLoadFromCCB {
@@ -24,10 +25,51 @@
     // visualize physics bodies and joints
     _physicsNode.debugDraw = TRUE;
     _pullbackNode.physicsBody.collisionMask = @[];
+    _mouseJointNode.physicsBody.collisionMask = @[];
 }
 
 - (void)touchBegan:(UITouch *)touch withEvent:(UIEvent *)event {
-    [self launchPenguin];
+    //[self launchPenguin];
+    CGPoint touchLocation = [touch locationInNode:_contentNode];
+    
+    // start catapult dragging when a touch inside of the catapult arm occurs
+    if (CGRectContainsPoint([_catapultArm boundingBox], touchLocation)) {
+        // move the mouseJointNode to the touch position
+        _mouseJointNode.position = touchLocation;
+        // set up a spring joint between the mouseJointNode and the catapultArm
+        _mouseJoint = [CCPhysicsJoint connectedSpringJointWithBodyA:_mouseJointNode.physicsBody
+                                                              bodyB:_catapultArm.physicsBody
+                                                            anchorA:ccp(0,0)
+                                                            anchorB:ccp(34,138)
+                                                         restLength:0.f
+                                                          stiffness:3000.f damping:150.f];
+    }
+}
+
+- (void)touchMoved:(UITouch *)touch withEvent:(UIEvent *)event {
+    // whenever touchs move, update the position of the mouseJointNode to the touch position
+    CGPoint touchLocation = [touch locationInNode:_contentNode];
+    _mouseJointNode.position = touchLocation;
+}
+
+- (void)touchEnded:(UITouch *)touch withEvent:(UIEvent *)event {
+    // when touches end, i.e user releases their finger, release the catapult
+    [self releaseCatapult];
+}
+
+- (void)touchCancelled:(UITouch *)touch withEvent:(UIEvent *)event {
+    // when touches are cancelled, i.e user drags their finger off screen or onto something else
+    // release the catapult
+    [self releaseCatapult];
+}
+
+
+- (void)releaseCatapult {
+    if (_mouseJoint != nil) {
+        // releases the joint and let the catapult snap back
+        [_mouseJoint invalidate];
+        _mouseJoint = nil;
+    }
 }
 
 - (void)launchPenguin {
