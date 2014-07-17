@@ -23,7 +23,7 @@
     
     // visualize physics bodies and joints
     _physicsNode.debugDraw = TRUE;
-    _pullbackNode.physicsBody.collisionMask = @[];
+    //_pullbackNode.physicsBody.collisionMask = @[];
 }
 
 - (void)touchBegan:(UITouch *)touch withEvent:(UIEvent *)event {
