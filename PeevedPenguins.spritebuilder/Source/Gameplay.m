@@ -7,13 +7,15 @@
 //
 
 #import "Gameplay.h"
+#import "Penguin.h"
 #import "CCPhysics+ObjectiveChipmunk.h"
 
 static const float MIN_SPEED = 5.f;
 
 @implementation Gameplay {
     CCPhysicsNode *_physicsNode;
-    CCNode *_catapultArm, *_levelNode, *_contentNode, *_pullbackNode, *_mouseJointNode, *_currentPenguin;
+    CCNode *_catapultArm, *_levelNode, *_contentNode, *_pullbackNode, *_mouseJointNode;
+    Penguin *_currentPenguin;
     CCPhysicsJoint *_mouseJoint, *_penguinCatapultJoint;
     CCAction *_followPenguin;
 }
@@ -51,7 +53,7 @@ static const float MIN_SPEED = 5.f;
                                                           stiffness:3000.f damping:150.f];
         
         // create a penguin from the ccb-file
-        _currentPenguin = [CCBReader load:@"Penguin"];
+        _currentPenguin = (Penguin *)[CCBReader load:@"Penguin"];
         // initially position it on the cata scoop - 34,138 is the position in the node space of the cata arm
         CGPoint penguinPosition = [_catapultArm convertToWorldSpace:ccp(34, 138)];
         // transform the world position to the node space to which the penguin will be added (_physicsNode)
@@ -103,6 +105,8 @@ static const float MIN_SPEED = 5.f;
         //CCActionFollow *follow = [CCActionFollow actionWithTarget:_currentPenguin worldBoundary:self.boundingBox];
         _followPenguin = [CCActionFollow actionWithTarget:_currentPenguin worldBoundary:self.boundingBox];
         [_contentNode runAction:_followPenguin];
+        
+        _currentPenguin.launched = TRUE;
     }
 }
 
@@ -183,18 +187,20 @@ static const float MIN_SPEED = 5.f;
 }
 
 - (void)nextAttempt {
-    CCLOG(@"Next Attempt!");
-    /*
-        The most important thing we need to do in the nextAttempt method is scrolling back to the catapult. 
-        However, since we already are running an action to follow the penguin, we need to stop this action 
-        before we start another scrolling action (otherwise Cocos2D would understandably be confused about 
-        these two conflicting instructions).
-    */
-    _currentPenguin = nil;
-    [_contentNode stopAction:_followPenguin];
-    
-    CCActionMoveTo *actionMoveTo = [CCActionMoveTo actionWithDuration:1.f position:ccp(0,0)];
-    [_contentNode runAction:actionMoveTo];
+    if (_currentPenguin.launched) {
+        CCLOG(@"Next Attempt!");
+        /*
+         The most important thing we need to do in the nextAttempt method is scrolling back to the catapult.
+         However, since we already are running an action to follow the penguin, we need to stop this action
+         before we start another scrolling action (otherwise Cocos2D would understandably be confused about
+         these two conflicting instructions).
+         */
+        _currentPenguin = nil;
+        [_contentNode stopAction:_followPenguin];
+        
+        CCActionMoveTo *actionMoveTo = [CCActionMoveTo actionWithDuration:1.f position:ccp(0,0)];
+        [_contentNode runAction:actionMoveTo];
+    }
 }
 
 @end
