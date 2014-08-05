@@ -9,7 +9,7 @@
 #import "Gameplay.h"
 #import "CCPhysics+ObjectiveChipmunk.h"
 
-static const float MIN_SPEED = 2.f;
+static const float MIN_SPEED = 5.f;
 
 @implementation Gameplay {
     CCPhysicsNode *_physicsNode;
@@ -134,7 +134,7 @@ static const float MIN_SPEED = 2.f;
 
 // Collisions
 - (void)ccPhysicsCollisionPostSolve:(CCPhysicsCollisionPair *)pair seal:(CCNode *)nodeA wildcard:(CCNode *)nodeB {
-    CCLOG(@"Something collided with a seal!");
+    //CCLOG(@"Something collided with a seal!");
     float energy = [pair totalKineticEnergy];
     // if energy is large enough, remove the seal
     if (energy > 5000.f) {
@@ -183,6 +183,7 @@ static const float MIN_SPEED = 2.f;
 }
 
 - (void)nextAttempt {
+    CCLOG(@"Next Attempt!");
     /*
         The most important thing we need to do in the nextAttempt method is scrolling back to the catapult. 
         However, since we already are running an action to follow the penguin, we need to stop this action 
