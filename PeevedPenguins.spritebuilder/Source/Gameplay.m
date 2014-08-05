@@ -9,10 +9,13 @@
 #import "Gameplay.h"
 #import "CCPhysics+ObjectiveChipmunk.h"
 
+static const float MIN_SPEED = 5.f;
+
 @implementation Gameplay {
     CCPhysicsNode *_physicsNode;
     CCNode *_catapultArm, *_levelNode, *_contentNode, *_pullbackNode, *_mouseJointNode, *_currentPenguin;
     CCPhysicsJoint *_mouseJoint, *_penguinCatapultJoint;
+    CCAction *_followPenguin;
 }
 
 - (void)didLoadFromCCB {
@@ -97,8 +100,9 @@
         _currentPenguin.physicsBody.allowsRotation = TRUE;
         
         // follow the flying penguin
-        CCActionFollow *follow = [CCActionFollow actionWithTarget:_currentPenguin worldBoundary:self.boundingBox];
-        [_contentNode runAction:follow];
+        //CCActionFollow *follow = [CCActionFollow actionWithTarget:_currentPenguin worldBoundary:self.boundingBox];
+        _followPenguin = [CCActionFollow actionWithTarget:_currentPenguin worldBoundary:self.boundingBox];
+        [_contentNode runAction:_followPenguin];
     }
 }
 
@@ -154,6 +158,42 @@
     
     // ...finally, remove the seal
     [seal removeFromParent];
+}
+
+- (void)update:(CCTime)delta {
+    // if speed is below minimum, assume this attempt is over
+    if (ccpLength(_currentPenguin.physicsBody.velocity) < MIN_SPEED) {
+        [self nextAttempt];
+        return;
+    }
+    
+    int xMin = _currentPenguin.boundingBox.origin.x;
+    
+    if (xMin < self.boundingBox.origin.x) {
+        [self nextAttempt];
+        return;
+    }
+    
+    int xMax = xMin + _currentPenguin.boundingBox.size.width;
+    
+    if (xMax > (self.boundingBox.origin.x + self.boundingBox.size.width)) {
+        [self nextAttempt];
+        return;
+    }
+}
+
+- (void)nextAttempt {
+    /*
+        The most important thing we need to do in the nextAttempt method is scrolling back to the catapult. 
+        However, since we already are running an action to follow the penguin, we need to stop this action 
+        before we start another scrolling action (otherwise Cocos2D would understandably be confused about 
+        these two conflicting instructions).
+    */
+    _currentPenguin = nil;
+    [_contentNode stopAction:_followPenguin];
+    
+    CCActionMoveTo *actionMoveTo = [CCActionMoveTo actionWithDuration:1.f position:ccp(0,0)];
+    [_contentNode runAction:actionMoveTo];
 }
 
 @end
